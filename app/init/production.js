@@ -24,9 +24,13 @@ if(!fs.existsSync(tmpPath)) {
 
 // By default, production uses a unix domain socket that can then be
 // proxied by nginx
-var domainSocket = path.join(__dirname, '../tmp/canary.sock');
+// var domainSocket = path.join(__dirname, '../tmp/canary.sock');
+// if(fs.existsSync(domainSocket)) {
+//     fs.unlinkSync(domainSocket);
+// }
+
 module.exports = main.config = {
-  port: domainSocket,
+  port: 3001,
   javascriptPath: manifestFunction,
   stylesheetPath: manifestFunction,
 }

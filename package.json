@@ -17,6 +17,9 @@
     "mincer-css-build": "./node_modules/.bin/mincer --include build/_assets --output build/public/assets *.css",
     "mincer-media-build": "./node_modules/.bin/mincer --include assets/images --output build/public/assets *.jpg *.png",
     "mocha-run": "./node_modules/.bin/mocha watch/test/test-*.js --require watch/test/shared.js",
+    "pm2-reload": "./node_modules/.bin/pm2 reload canary",
+    "pm2-start": "NODE_ENV=production ./node_modules/.bin/pm2 start build/server.js --name canary --instances 0",
+    "pm2-stop": "./node_modules/.bin/pm2 stop canary",
     "scripts-build": "mkdir -p build/scripts && node config/scripts-build.js",
     "start": "./bin/watch.sh",
     "stylus-build": "mkdir -p build/_assets && ./node_modules/.bin/stylus assets/stylesheets/app.* --out build/_assets --compress --sourcemap --use ./config/stylus-production.js",
@@ -28,7 +31,8 @@
     "webpack-watch": "node config/webpack-development.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "pm2": "^0.14.7"
   },
   "devDependencies": {
     "assetflow": "^0.2.8",

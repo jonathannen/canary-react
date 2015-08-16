@@ -3,6 +3,7 @@
 // Everything that runs on the server side. As we're a principally
 // isomorphic app, this bootstraps the client side to render components.
 
+import morgan from 'morgan';
 import path from 'path';
 import React from 'react';
 import Router from "react-router";
@@ -12,6 +13,10 @@ import routes from './routes';
 
 // Initalize the custom configuration
 var init = require('./init/' + main.settings.env);
+
+// Log request outcomes to STDOUT
+morgan.token('pid', function getPid() { return process.pid; });
+main.use(morgan('pid-:pid :method :url :status :response-time ms - :res[content-length]'));
 
 // All other requests get rendered via React, in development using
 // the Jade template engine. In development all we need to do is serve up

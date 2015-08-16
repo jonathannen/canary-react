@@ -9,6 +9,7 @@ var path = require('path');
 
 options = {
   nginxHttpPort: 3000,
+  nodeHttpPort: 3001,
   rootDirectory: path.resolve(__dirname, '../build')
 }
 
