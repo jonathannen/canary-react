@@ -4,12 +4,14 @@
 
 This is a boilerplate node.js project built with:
 
-- ES6 via the Babel component.
+- ES6 transpiled via Babel.
 - React.js with:
 	- Isomorphic rendering.
 	- React-Router using Browser History.
 	- Hot-reloading of components (in development).
-- Webpack for JavaScript components.
+- Build with:
+	- Sprockets-style asset compilation and digesting.
+	- Webpack for JavaScript components.
 
 ## Usage
 
