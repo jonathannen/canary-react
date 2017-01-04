@@ -7,7 +7,7 @@ export default class GoodbyeWorld extends React.Component {
   render() {
     return <div>
       <h1>Goodbye World...</h1>
-      <p><Link to='hello'>I want to go back</Link></p>
+      <p><Link to='/'>I want to go back</Link></p>
     </div>;
   }
 }

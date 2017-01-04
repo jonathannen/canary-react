@@ -6,7 +6,9 @@
 import morgan from 'morgan';
 import path from 'path';
 import React from 'react';
-import Router from "react-router";
+import { match, RouterContext } from 'react-router'
+import { renderToString } from 'react-dom/server'
+// import HelloWorld from './views/HelloWorld';
 
 import main from "./main";
 import routes from './routes';
@@ -28,15 +30,16 @@ main.set('view engine', 'jade');
 var stylesheetPath = main.config.stylesheetPath("app.css");
 var javascriptPath = main.config.javascriptPath("app.js");
 main.get('*', function (req, res) {
-  res.send('Hello');
-  // Router.run(routes, req.url, Handler => {
-  //   let reactContent = React.renderToString(<Handler />);
-  //   res.render('index', {
-  //     content: reactContent,
-  //     javascriptPath: javascriptPath,
-  //     stylesheetPath: stylesheetPath,
-  //   });
-  // });
+
+  match({ routes: routes, location: req.url }, (err, redirect, props) => {
+    const reactHtml = renderToString(<RouterContext {...props}/>)
+    res.render('index', {
+      content: reactHtml,
+      javascriptPath: javascriptPath,
+      stylesheetPath: stylesheetPath,
+    });
+  });
+  
 });
 
 // Kick off the actual server

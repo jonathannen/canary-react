@@ -9,8 +9,8 @@
     "url": "https://github.com/jonathannen/canary-react.git"
   },
   "scripts": {
-    "babel-build": "./node_modules/.bin/babel app --out-dir build --source-maps true",
-    "babel-build-test": "./node_modules/.bin/babel app --out-dir watch --source-maps inline && ./node_modules/.bin/babel test --out-dir watch/test --source-maps inline",
+    "babel-build": "./node_modules/.bin/babel app --out-dir build --source-maps true --presets es2015,react",
+    "babel-build-test": "./node_modules/.bin/babel app --out-dir watch --source-maps inline --presets es2015,react && ./node_modules/.bin/babel test --out-dir watch/test --source-maps inline --presets es2015,react",
     "babel-watch": "./node_modules/.bin/babel app --out-dir watch --watch --source-maps true --presets es2015,react",
     "build": "./bin/build.sh",
     "clean": "rm -rf build",
@@ -23,12 +23,12 @@
     "release": "./bin/release.sh",
     "scripts-build": "mkdir -p build/scripts && node config/scripts-build.js",
     "start": "./bin/watch.sh",
-    "stylus-build": "mkdir -p build/_assets && ./node_modules/.bin/stylus assets/stylesheets/app.* --out build/_assets --compress --sourcemap --use ./config/stylus-production.js",
-    "stylus-watch": "mkdir -p watch/assets && ./node_modules/.bin/stylus assets/stylesheets/app.* --out watch/assets --use ./config/stylus-development.js --watch --sourcemap-inline",
+    "stylus-build": "mkdir -p build/_assets && ./node_modules/stylus/bin/stylus assets/stylesheets/app.* --out build/_assets --compress --sourcemap --use ./config/stylus-production.js",
+    "stylus-watch": "mkdir -p watch/assets && ./node_modules/stylus/bin/stylus assets/stylesheets/app.* --out watch/assets --use ./config/stylus-development.js --watch --sourcemap-inline",
     "test": "./bin/test.sh",
     "test-build": "./node_modules/.bin/babel test --out-dir build/test --source-maps inline && ./node_modules/.bin/mocha build/test/test-*.js && rm -rf build/test",
     "web-watch": "nodemon watch/server.js",
-    "webpack-build": "./node_modules/.bin/webpack -p",
+    "webpack-build": "./node_modules/webpack/bin/webpack.js -p",
     "webpack-watch": "node config/webpack-development.js"
   },
   "dependencies": {
@@ -47,13 +47,15 @@
     "babel-loader": "*",
     "chai": "^3.2.0",
     "ejs": "^2.3.3",
+    "jsdom": "*",
     "mincer": "^1.3.0",
     "mocha": "^3.2.0",
     "mocha-jsdom": "^1.0.0",
     "nodemon": "^1.4.1",
     "object-assign": "^4.1.0",
+    "react-dom": "*",
     "react-hot-loader": "^1.2.8",
-    "stylus": "^0.54.5",
+    "stylus": "*",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1",
     "webpack-manifest-plugin": "^1.1.0"
