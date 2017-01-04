@@ -30,8 +30,9 @@ var config = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel-loader?experimental'], exclude: /node_modules/
+        exclude: /node_modules/,
+        loaders: ['babel-loader?presets[]=es2015,presets[]=react'], //'react-hot', '
+        test: /\.js?$/,
       }
     ]
   }

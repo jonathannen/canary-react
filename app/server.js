@@ -28,14 +28,15 @@ main.set('view engine', 'jade');
 var stylesheetPath = main.config.stylesheetPath("app.css");
 var javascriptPath = main.config.javascriptPath("app.js");
 main.get('*', function (req, res) {
-  Router.run(routes, req.url, Handler => {
-    let reactContent = React.renderToString(<Handler />);
-    res.render('index', {
-      content: reactContent,
-      javascriptPath: javascriptPath,
-      stylesheetPath: stylesheetPath,
-    });
-  });
+  res.send('Hello');
+  // Router.run(routes, req.url, Handler => {
+  //   let reactContent = React.renderToString(<Handler />);
+  //   res.render('index', {
+  //     content: reactContent,
+  //     javascriptPath: javascriptPath,
+  //     stylesheetPath: stylesheetPath,
+  //   });
+  // });
 });
 
 // Kick off the actual server
