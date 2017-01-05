@@ -44,11 +44,6 @@ Then take your browser to [http://localhost:3000/](http://localhost:3000/). Inst
 
 1. Optional. Means nginx runs in the foreground and can be stopped
 
-## Upcoming
-
-- Currently the tests are heavy-handed due to the Router requirements.
-- Would like an alternative to jsdom as they [only support io.js](https://github.com/tmpvar/jsdom/issues/1047) as of version jsdom-4.0.
-
 ## License
 MIT Licensed. See LICENSE for more information.
 
