@@ -10,36 +10,27 @@ import path from 'path';
 import React from 'react';
 import { match, RouterContext } from 'react-router'
 import { renderToString } from 'react-dom/server'
-// import HelloWorld from './views/HelloWorld';
 
 import main from "./main";
 import routes from './routes';
 
 // Initalize the custom configuration
 var init = require('./init/' + main.settings.env);
+var layout = require('./views/layout');
+console.log(layout);
 
 // Log request outcomes to STDOUT
 morgan.token('pid', function getPid() { return process.pid; });
 main.use(morgan('pid-:pid :method :url :status :response-time ms - :res[content-length]'));
 
-// All other requests get rendered via React, in development using
-// the Jade template engine. In development all we need to do is serve up
-// the index page (app/views/index.jade) with the right CSS and the client
-// javascript.
-main.set('views', ['./views', './app/views']);
-main.set('view engine', 'jade');
-
-var stylesheetPath = main.config.stylesheetPath("app.css");
-var javascriptPath = main.config.javascriptPath("app.js");
 main.get('*', function (req, res) {
-  
+
+  res.write(layout.header);
   match({ routes: routes, location: req.url }, (err, redirect, props) => {
     const reactHtml = renderToString(<RouterContext {...props}/>)
-    res.render('index', {
-      content: reactHtml,
-      javascriptPath: javascriptPath,
-      stylesheetPath: stylesheetPath,
-    });
+    res.write(reactHtml);
+    res.write(layout.footer);
+    res.end();
   });
 
 });
