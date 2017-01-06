@@ -6,7 +6,7 @@ This is a boilerplate node.js project built with:
 
 - ES6 transpiled via Babel.
 - React.js with:
-	- Isomorphic rendering.
+	- Universal Application (aka isomorphic rendering).
 	- React-Router using Browser History.
 	- Hot-reloading of components (in development).
 - Build with:
