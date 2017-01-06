@@ -17,7 +17,6 @@ import routes from './routes';
 // Initalize the custom configuration
 var init = require('./init/' + main.settings.env);
 var layout = require('./views/layout');
-console.log(layout);
 
 // Log request outcomes to STDOUT
 morgan.token('pid', function getPid() { return process.pid; });

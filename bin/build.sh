@@ -27,7 +27,6 @@ npm run webpack-build
 echo "  Building CSS and other view assets..."
 npm run stylus-build
 npm run mincer-css-build
-cp app/views/index.jade build/views
 cp package.json build
 
 # Clean up
