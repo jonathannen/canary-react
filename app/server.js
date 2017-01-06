@@ -3,6 +3,8 @@
 // Everything that runs on the server side. As we're a principally
 // isomorphic app, this bootstraps the client side to render components.
 
+require('source-map-support').install(); // Enable source maps at the get-go
+
 import morgan from 'morgan';
 import path from 'path';
 import React from 'react';
@@ -30,7 +32,7 @@ main.set('view engine', 'jade');
 var stylesheetPath = main.config.stylesheetPath("app.css");
 var javascriptPath = main.config.javascriptPath("app.js");
 main.get('*', function (req, res) {
-
+  
   match({ routes: routes, location: req.url }, (err, redirect, props) => {
     const reactHtml = renderToString(<RouterContext {...props}/>)
     res.render('index', {
@@ -39,7 +41,7 @@ main.get('*', function (req, res) {
       stylesheetPath: stylesheetPath,
     });
   });
-  
+
 });
 
 // Kick off the actual server
