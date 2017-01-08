@@ -9,4 +9,4 @@ set -o errexit # Exit on error
 
 npm run babel-watch &
 sleep 5 # Short delay to let babel catch up
-npm run stylus-watch & npm run webpack-watch & npm run web-watch
+npm run saas-watch & npm run webpack-watch & npm run web-watch

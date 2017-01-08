@@ -25,7 +25,7 @@ npm run babel-build
 npm run webpack-build
 
 echo "  Building CSS and other view assets..."
-npm run stylus-build
+npm run saas-build
 npm run mincer-css-build
 cp package.json build
 

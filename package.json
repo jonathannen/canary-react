@@ -23,8 +23,14 @@
     "release": "./bin/release.sh",
     "scripts-build": "mkdir -p build/scripts && node config/scripts-build.js",
     "start": "./bin/watch.sh",
-    "stylus-build": "mkdir -p build/_assets && ./node_modules/stylus/bin/stylus assets/stylesheets/app.* --out build/_assets --compress --sourcemap --use ./config/stylus-production.js",
-    "stylus-watch": "mkdir -p watch/assets && ./node_modules/stylus/bin/stylus assets/stylesheets/app.* --out watch/assets --use ./config/stylus-development.js --watch --sourcemap-inline",
+
+    "saas-build": "mkdir -p build/_assets && ./node_modules/.bin/node-sass assets/stylesheets/ --output build/_assets --compress --sourcemap --functions ./config/sass-production.js",
+    "saas-watch-prebuild": "mkdir -p watch/assets && ./node_modules/.bin/node-sass assets/stylesheets/ --output watch/assets/ --source-maps true --functions ./config/sass-development.js",
+    "saas-watch": "npm run saas-watch-prebuild && ./node_modules/.bin/node-sass assets/stylesheets/ --output watch/assets/ --source-maps true --watch --functions ./config/sass-development.js",
+
+    "astylus-build": "mkdir -p build/_assets && ./node_modules/stylus/bin/stylus assets/stylesheets/app.* --out build/_assets --compress --sourcemap --use ./config/stylus-production.js",
+    "astylus-watch": "mkdir -p watch/assets && ./node_modules/stylus/bin/stylus assets/stylesheets/app.* --out watch/assets --use ./config/stylus-development.js --watch --sourcemap-inline",
+
     "test": "./bin/test.sh",
     "test-build": "./node_modules/.bin/babel test --out-dir build/test --source-maps inline && ./node_modules/.bin/mocha build/test/test-*.js && rm -rf build/test",
     "web-watch": "nodemon watch/server.js",
@@ -52,11 +58,11 @@
     "mocha": "^3.2.0",
     "mocha-jsdom": "^1.0.0",
     "nodemon": "^1.4.1",
+    "node-sass": "*",
     "object-assign": "^4.1.0",
     "react-dom": "*",
     "react-hot-loader": "^1.2.8",
     "source-map-support": "*",
-    "stylus": "*",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1",
     "webpack-manifest-plugin": "^1.1.0"
